@@ -30,11 +30,13 @@ trap "exit 1"           HUP INT PIPE QUIT TERM
 trap 'rm -rf "$TEMPD"'  EXIT
 
 install() {
-  if [ "latest" = "$version" ]; then
-    release_url="https://api.github.com/repos/sbs20/scanservjs/releases/latest"
+  if [ -z "$release_url" ]; then
+    if [ "latest" = "$version" ]; then
+      release_url="https://api.github.com/repos/sbs20/scanservjs/releases/latest"
 
-  else
-    release_url="https://api.github.com/repos/sbs20/scanservjs/releases/tags/$version"
+    else
+      release_url="https://api.github.com/repos/sbs20/scanservjs/releases/tags/$version"
+    fi
   fi
 
   url=$(curl -s $release_url | grep browser_download_url | cut -d '"' -f 4)
