@@ -85,9 +85,14 @@ module.exports = class Feature {
         case '--adf-mode':
         case '--mode':
         case '--source':
+        case '--originalSize':
+        case '--sendingSize':
+        case '--imageQuality':
+        case '--densityType':
           this.options = this.parameters.split('|');
           break;
 
+        case '--densityValue':
         case '--resolution':
           this.asResolution();
           break;
