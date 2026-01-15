@@ -61,6 +61,21 @@ export default class Request {
         ? request.params.dynamicLineart
         : true;
     }
+    if ('--originalSize' in device.features) {
+      this.params.originalSize = request.params.originalSize || device.features['--originalSize'].default;
+    }
+    if ('--sendingSize' in device.features) {
+      this.params.sendingSize = request.params.sendingSize || device.features['--sendingSize'].default;
+    }
+    if ('--imageQuality' in device.features) {
+      this.params.imageQuality = request.params.imageQuality || device.features['--imageQuality'].default;
+    }
+    if ('--densityType' in device.features) {
+      this.params.densityType = request.params.densityType || device.features['--densityType'].default;
+    }
+    if ('--densityValue' in device.features) {
+      this.params.densityValue = request.params.densityValue || device.features['--densityValue'].default;
+    }
   }
 
   /**

@@ -33,6 +33,31 @@
           :no-data-text="$t('global.no-data-text')" :label="$t('scan.mode')"
           :items="modes" item-value="value" item-title="text" />
 
+        <v-select v-if="'--originalSize' in device.features"
+          v-model="request.params.originalSize"
+          :no-data-text="$t('global.no-data-text')" :label="$t('scan.original-size')"
+          :items="originalSizes" item-value="value" item-title="text" />
+
+        <v-select v-if="'--sendingSize' in device.features"
+          v-model="request.params.sendingSize"
+          :no-data-text="$t('global.no-data-text')" :label="$t('scan.sending-size')"
+          :items="sendingSizes" item-value="value" item-title="text" />
+
+        <v-select v-if="'--imageQuality' in device.features"
+          v-model="request.params.imageQuality"
+          :no-data-text="$t('global.no-data-text')" :label="$t('scan.image-quality')"
+          :items="imageQualities" item-value="value" item-title="text" />
+
+        <v-select v-if="'--densityType' in device.features"
+          v-model="request.params.densityType"
+          :no-data-text="$t('global.no-data-text')" :label="$t('scan.density-type')"
+          :items="densityTypes" item-value="value" item-title="text" />
+
+        <v-select v-if="'--densityValue' in device.features"
+          v-model="request.params.densityValue"
+          :no-data-text="$t('global.no-data-text')" :label="$t('scan.density-value')"
+          :items="device.features['--densityValue']['options']" />
+
         <v-select v-if="'--disable-dynamic-lineart' in device.features"
           v-model="request.params.mode"
           :label="$t('scan.dynamic-lineart')"
@@ -302,6 +327,54 @@ export default {
             value: source
           };
           return x;
+        })
+        : undefined;
+    },
+
+    originalSizes() {
+      return '--originalSize' in this.device.features
+        ? this.device.features['--originalSize'].options.map(size => {
+          const key = `originalSize.${sanitiseLocaleKey(size)}`;
+          return {
+            text: this.te(key) ? this.$t(key) : size,
+            value: size
+          };
+        })
+        : undefined;
+    },
+
+    sendingSizes() {
+      return '--sendingSize' in this.device.features
+        ? this.device.features['--sendingSize'].options.map(size => {
+          const key = `sendingSize.${sanitiseLocaleKey(size)}`;
+          return {
+            text: this.te(key) ? this.$t(key) : size,
+            value: size
+          };
+        })
+        : undefined;
+    },
+
+    imageQualities() {
+      return '--imageQuality' in this.device.features
+        ? this.device.features['--imageQuality'].options.map(quality => {
+          const key = `imageQuality.${sanitiseLocaleKey(quality)}`;
+          return {
+            text: this.te(key) ? this.$t(key) : quality,
+            value: quality
+          };
+        })
+        : undefined;
+    },
+
+    densityTypes() {
+      return '--densityType' in this.device.features
+        ? this.device.features['--densityType'].options.map(type => {
+          const key = `densityType.${sanitiseLocaleKey(type)}`;
+          return {
+            text: this.te(key) ? this.$t(key) : type,
+            value: type
+          };
         })
         : undefined;
     }

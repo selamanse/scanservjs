@@ -36,7 +36,27 @@ export default {
           default: 0,
           limits: [-100, 100],
         },
-        '--disable-dynamic-lineart': {}
+        '--disable-dynamic-lineart': {},
+        '--originalSize': {
+          default: 'A4',
+          options: [],
+        },
+        '--sendingSize': {
+          default: 'Auto',
+          options: [],
+        },
+        '--imageQuality': {
+          default: 'Text+Photo',
+          options: [],
+        },
+        '--densityType': {
+          default: 'Manual',
+          options: [],
+        },
+        '--densityValue': {
+          default: 0,
+          options: [],
+        }
       },
       settings: {
         batchMode: {
