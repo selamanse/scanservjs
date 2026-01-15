@@ -73,6 +73,8 @@ module.exports = class Config {
         Constants.BATCH_COLLATE_STANDARD
       ],
 
+      scanimageExtraParams: {},
+
       filters: [
         {
           description: 'filter.auto-contrast',

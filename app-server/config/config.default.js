@@ -113,6 +113,27 @@ module.exports = {
     //   device.features['-x'].default = 215;
     //   device.features['-y'].default = 297;
     // }
+
+    // Configure Kyocera devices
+    const kyoceraDevice = devices.filter(d => d.id.startsWith('kyocera'))[0];
+    if (kyoceraDevice) {
+      // Ensure originalSize and sendingSize features are properly configured
+      if ('--originalSize' in kyoceraDevice.features) {
+        kyoceraDevice.features['--originalSize'].default = kyoceraDevice.features['--originalSize'].default || 'A4';
+      }
+      if ('--sendingSize' in kyoceraDevice.features) {
+        kyoceraDevice.features['--sendingSize'].default = kyoceraDevice.features['--sendingSize'].default || 'Auto';
+      }
+      if ('--imageQuality' in kyoceraDevice.features) {
+        kyoceraDevice.features['--imageQuality'].default = kyoceraDevice.features['--imageQuality'].default || 'Text+Photo';
+      }
+      if ('--densityType' in kyoceraDevice.features) {
+        kyoceraDevice.features['--densityType'].default = kyoceraDevice.features['--densityType'].default || 'Manual';
+      }
+      if ('--densityValue' in kyoceraDevice.features) {
+        kyoceraDevice.features['--densityValue'].default = kyoceraDevice.features['--densityValue'].default || 0;
+      }
+    }
   },
 
   /**

@@ -112,6 +112,22 @@ module.exports = class ScanimageCommand {
     if ('sendingSize' in params) {
       cmdBuilder.arg('--sendingSize', params.sendingSize);
     }
+    if ('imageQuality' in params) {
+      cmdBuilder.arg('--imageQuality', params.imageQuality);
+    }
+    if ('densityType' in params) {
+      cmdBuilder.arg('--densityType', params.densityType);
+    }
+    if ('densityValue' in params) {
+      cmdBuilder.arg('--densityValue', params.densityValue);
+    }
+
+    // Add extra parameters from config
+    if (this.config.scanimageExtraParams) {
+      for (const [key, value] of Object.entries(this.config.scanimageExtraParams)) {
+        cmdBuilder.arg(key, value);
+      }
+    }
 
     if ('ald' in params) {
       cmdBuilder.arg(`--ald=${params.ald}`);

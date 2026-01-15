@@ -102,6 +102,25 @@ module.exports = class Request {
       this.params.ald = data.params.ald || features['--ald'].default;
       assertContains(features['--ald'].options, this.params.ald, 'Invalid --ald');
     }
+    if ('--originalSize' in features) {
+      this.params.originalSize = data.params.originalSize || features['--originalSize'].default;
+      assertContains(features['--originalSize'].options, this.params.originalSize, 'Invalid --originalSize');
+    }
+    if ('--sendingSize' in features) {
+      this.params.sendingSize = data.params.sendingSize || features['--sendingSize'].default;
+      assertContains(features['--sendingSize'].options, this.params.sendingSize, 'Invalid --sendingSize');
+    }
+    if ('--imageQuality' in features) {
+      this.params.imageQuality = data.params.imageQuality || features['--imageQuality'].default;
+      assertContains(features['--imageQuality'].options, this.params.imageQuality, 'Invalid --imageQuality');
+    }
+    if ('--densityType' in features) {
+      this.params.densityType = data.params.densityType || features['--densityType'].default;
+      assertContains(features['--densityType'].options, this.params.densityType, 'Invalid --densityType');
+    }
+    if ('--densityValue' in features) {
+      this.params.densityValue = constrainWithFeature(data.params.densityValue, features['--densityValue']);
+    }
 
     log.trace(LogFormatter.format().full(this));
   }

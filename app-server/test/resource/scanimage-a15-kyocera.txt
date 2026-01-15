@@ -1,0 +1,25 @@
+
+All options specific to device `kyocera_wc3_usb:libusb:002:002':
+  Standard:
+    --source Auto|DP|Platen|2-sided (Binding Top)|2-sided (Binding Left/Right) [Auto]
+        Selects the scan source (such as a document-feeder).
+    --mode Mono|Gray|Color [Mono]
+        Selects the scan mode (e.g., lineart, monochrome, or color).
+    --resolution 200|300|400|600dpi [200]
+        Sets the resolution of the scanned image.
+  Advanced:
+    --originalSize A4|A5|A6|B5(JIS)|B5(ISO)|B6|Legal|Letter|Executive [A4]
+        Original Size options
+    --sendingSize Auto|A4|A5|A6|B5(JIS)|B5(ISO)|B6|Legal|Letter|Executive [Auto]
+        Sending Size options
+    --imageQuality Text|Photo|Text+Photo [Text+Photo]
+        Image Quality options
+    --densityType Manual|Auto [Manual]
+        Density type options
+    --densityValue -3|-2|-1|0|1|2|3 [0]
+        Density options
+    --page-height 0..23330816mm [0] [read-only]
+        Specifies the height of the media.
+    --page-width 0..14155776mm [0] [read-only]
+        Specifies the width of the media.  Required for automatic centering of
+        sheet-fed scans.

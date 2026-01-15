@@ -373,4 +373,37 @@ describe('Device', () => {
 
   });
 
+  it('scanimage-a15-kyocera.txt', () => {
+    const file = FileInfo.create('test/resource/scanimage-a15-kyocera.txt');
+    const device = Device.from(file.toText());
+
+    assert.strictEqual(device.id, 'kyocera_wc3_usb:libusb:002:002');
+    assert.deepStrictEqual(device.features['--source'].options, ['Auto', 'DP', 'Platen', '2-sided (Binding Top)', '2-sided (Binding Left/Right)']);
+    assert.strictEqual(device.features['--source'].default, 'Auto');
+    assert.deepStrictEqual(device.features['--mode'].options, ['Mono', 'Gray', 'Color']);
+    assert.strictEqual(device.features['--mode'].default, 'Mono');
+    assert.deepStrictEqual(device.features['--resolution'].options, [200, 300, 400, 600]);
+    assert.strictEqual(device.features['--resolution'].default, 200);
+    assert.deepStrictEqual(device.features['--originalSize'].options, ['A4', 'A5', 'A6', 'B5(JIS)', 'B5(ISO)', 'B6', 'Legal', 'Letter', 'Executive']);
+    assert.strictEqual(device.features['--originalSize'].default, 'A4');
+    assert.deepStrictEqual(device.features['--sendingSize'].options, ['Auto', 'A4', 'A5', 'A6', 'B5(JIS)', 'B5(ISO)', 'B6', 'Legal', 'Letter', 'Executive']);
+    assert.strictEqual(device.features['--sendingSize'].default, 'Auto');
+    assert.deepStrictEqual(device.features['--imageQuality'].options, ['Text', 'Photo', 'Text+Photo']);
+    assert.strictEqual(device.features['--imageQuality'].default, 'Text+Photo');
+    assert.deepStrictEqual(device.features['--densityType'].options, ['Manual', 'Auto']);
+    assert.strictEqual(device.features['--densityType'].default, 'Manual');
+    assert.deepStrictEqual(device.features['--densityValue'].options, [-3, -2, -1, 0, 1, 2, 3]);
+    assert.strictEqual(device.features['--densityValue'].default, 0);
+    assert.strictEqual(device.features['--page-height'].limits[0], 0);
+    assert.strictEqual(device.features['--page-height'].limits[1], 23330816);
+    assert.strictEqual(device.features['--page-height'].default, 0);
+    assert.strictEqual(device.features['--page-width'].limits[0], 0);
+    assert.strictEqual(device.features['--page-width'].limits[1], 14155776);
+    assert.strictEqual(device.features['--page-width'].default, 0);
+    assert.strictEqual(device.features['-l'], undefined);
+    assert.strictEqual(device.features['-t'], undefined);
+    assert.strictEqual(device.features['-x'], undefined);
+    assert.strictEqual(device.features['-y'], undefined);
+  });
+
 });

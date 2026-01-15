@@ -80,6 +80,7 @@
  * @property {Pipeline[]} pipelines
  * @property {PaperSize[]} paperSizes
  * @property {string[]} batchModes
+ * @property {Object.<string, string>} scanimageExtraParams
  */
 
 /**
