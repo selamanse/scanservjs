@@ -68,10 +68,11 @@ module.exports = class Request {
     if ('-y' in features) {
       this.params.height = constrainWithFeature(data.params.height || features['-y'].limits[1], features['-y']);
     }
-    if ('--page-height' in features) {
+    // Only add page dimensions if they're not read-only (Kyocera scanners have these as read-only)
+    if ('--page-height' in features && features['--page-height'].enabled) {
       this.params.pageHeight = constrainWithFeature(data.params.pageHeight, features['--page-height']);
     }
-    if ('--page-width' in features) {
+    if ('--page-width' in features && features['--page-width'].enabled) {
       this.params.pageWidth = constrainWithFeature(data.params.pageWidth, features['--page-width']);
     }
 

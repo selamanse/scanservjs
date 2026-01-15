@@ -89,8 +89,11 @@ module.exports = class ScanimageCommand {
     if ('originalSize' in params) {
       cmdBuilder.arg('--originalSize', params.originalSize);
     }
-    // Only send sendingSize if it's not Auto (Auto is the default behavior)
-    if ('sendingSize' in params && params.sendingSize !== 'Auto') {
+    // Only send sendingSize if it's not Auto and differs from originalSize
+    // (setting both to the same value causes "Invalid argument" error)
+    if ('sendingSize' in params &&
+        params.sendingSize !== 'Auto' &&
+        params.sendingSize !== params.originalSize) {
       cmdBuilder.arg('--sendingSize', params.sendingSize);
     }
     if ('imageQuality' in params) {
