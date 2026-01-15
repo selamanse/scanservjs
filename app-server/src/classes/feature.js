@@ -80,6 +80,12 @@ module.exports = class Feature {
     this.enabled = this.default !== 'inactive' && this.meta !== 'read-only';
 
     this.parameters = this.parameters.replace(/^auto\|/, '');
+
+    // Parse page dimensions even if read-only (needed for validation)
+    if (this.name === '--page-height' || this.name === '--page-width') {
+      this.asGeometry();
+    }
+
     if (this.enabled) {
       switch (this.name) {
         case '--adf-mode':
@@ -101,8 +107,6 @@ module.exports = class Feature {
         case '-t':
         case '-x':
         case '-y':
-        case '--page-height':
-        case '--page-width':
           this.asGeometry();
           break;
 

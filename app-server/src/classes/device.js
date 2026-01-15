@@ -35,7 +35,7 @@ module.exports = class Device {
       .matchAll(this.string)
       .map(m => m[1])
       .map(Feature.parse)
-      .filter(f => f.enabled)
+      .filter(f => f.enabled || f.name === '--page-height' || f.name === '--page-width')
       .forEach(f => this.features[f.name] = f);
 
     const match = /All options specific to device `(.*)'/.exec(this.string);

@@ -85,6 +85,24 @@ module.exports = class ScanimageCommand {
 
     cmdBuilder.arg('--resolution', params.resolution);
 
+    // Kyocera advanced options (must come before --format)
+    if ('originalSize' in params) {
+      cmdBuilder.arg('--originalSize', params.originalSize);
+    }
+    // Only send sendingSize if it's not Auto (Auto is the default behavior)
+    if ('sendingSize' in params && params.sendingSize !== 'Auto') {
+      cmdBuilder.arg('--sendingSize', params.sendingSize);
+    }
+    if ('imageQuality' in params) {
+      cmdBuilder.arg('--imageQuality', params.imageQuality);
+    }
+    if ('densityType' in params) {
+      cmdBuilder.arg('--densityType', params.densityType);
+    }
+    if ('densityValue' in params) {
+      cmdBuilder.arg('--densityValue', params.densityValue);
+    }
+
     if ('pageWidth' in params) {
       cmdBuilder.arg('--page-width', params.pageWidth);
     }
@@ -105,22 +123,6 @@ module.exports = class ScanimageCommand {
     }
 
     cmdBuilder.arg('--format', params.format);
-
-    if ('originalSize' in params) {
-      cmdBuilder.arg('--originalSize', params.originalSize);
-    }
-    if ('sendingSize' in params) {
-      cmdBuilder.arg('--sendingSize', params.sendingSize);
-    }
-    if ('imageQuality' in params) {
-      cmdBuilder.arg('--imageQuality', params.imageQuality);
-    }
-    if ('densityType' in params) {
-      cmdBuilder.arg('--densityType', params.densityType);
-    }
-    if ('densityValue' in params) {
-      cmdBuilder.arg('--densityValue', params.densityValue);
-    }
 
     // Add extra parameters from config
     if (this.config.scanimageExtraParams) {

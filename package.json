@@ -1,10 +1,11 @@
 {
   "name": "scanservjs",
-  "version": "3.0.4",
+  "version": "3.0.4-kyocera",
   "description": "scanservjs is a simple web-based UI for SANE which allows you to share a scanner on a network without the need for drivers or complicated installation.",
   "scripts": {
     "build:version": "npm --allow-same-version --no-git-tag-version version $npm_package_version --workspaces",
     "build": "npm run build:version && npm run build --workspaces && node build.js --assemble",
+    "build:deb": "docker build --target scanservjs-build -t scanservjs-builder . && docker create --name temp-builder scanservjs-builder && docker cp temp-builder:/app/debian/. ./debian/ && docker rm temp-builder && ls -lh ./debian/*.deb",
     "clean": "npm run clean:dist && npm run clean:modules && npm run clean:debian && npm run clean:jekyll",
     "clean:debian": "rm -rf ./debian",
     "clean:dist": "rm -rf ./dist && npm run clean:dist --workspaces",

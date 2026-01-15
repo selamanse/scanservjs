@@ -119,7 +119,10 @@ module.exports = class Request {
       assertContains(features['--densityType'].options, this.params.densityType, 'Invalid --densityType');
     }
     if ('--densityValue' in features) {
-      this.params.densityValue = constrainWithFeature(data.params.densityValue, features['--densityValue']);
+      this.params.densityValue = data.params.densityValue !== undefined
+        ? data.params.densityValue
+        : features['--densityValue'].default;
+      assertContains(features['--densityValue'].options, this.params.densityValue, 'Invalid --densityValue');
     }
 
     log.trace(LogFormatter.format().full(this));
