@@ -106,6 +106,13 @@ module.exports = class ScanimageCommand {
 
     cmdBuilder.arg('--format', params.format);
 
+    if ('originalSize' in params) {
+      cmdBuilder.arg('--originalSize', params.originalSize);
+    }
+    if ('sendingSize' in params) {
+      cmdBuilder.arg('--sendingSize', params.sendingSize);
+    }
+
     if ('ald' in params) {
       cmdBuilder.arg(`--ald=${params.ald}`);
     }
